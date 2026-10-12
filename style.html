@@ -1,0 +1,252 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #172033;
+  background: #f3f6fc;
+  font-synthesis: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 42px 16px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(91, 141, 239, 0.13), transparent 30%),
+    radial-gradient(circle at 90% 85%, rgba(128, 90, 213, 0.10), transparent 28%),
+    #f3f6fc;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible {
+  outline: 3px solid rgba(82, 109, 224, 0.28);
+  outline-offset: 2px;
+}
+
+.app { width: min(100%, 760px); margin: 0 auto; }
+.app-header { text-align: center; margin-bottom: 25px; }
+.eyebrow {
+  color: #526de0; font-size: 0.75rem; font-weight: 800;
+  letter-spacing: 0.18em; margin: 0 0 10px;
+}
+h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.045em; margin: 0; }
+h1 span { color: #526de0; }
+.subtitle { color: #68748b; margin: 12px 0 0; }
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.stat-card {
+  min-width: 0; background: #fff; border: 1px solid #e4e9f3;
+  border-radius: 16px; padding: 17px 16px;
+  box-shadow: 0 8px 24px rgba(35, 51, 90, 0.045);
+}
+.stat-icon {
+  display: grid; place-items: center; width: 34px; height: 34px;
+  border-radius: 10px; background: #eef1ff; color: #526de0;
+  font-size: 1.2rem; font-weight: 800; margin-bottom: 12px;
+}
+.pending-card .stat-icon { background: #fff4df; color: #b7791f; }
+.completed-card .stat-icon { background: #e5f8ee; color: #168653; }
+.rate-card .stat-icon { background: #f1eaff; color: #805ad5; }
+.stat-card p { margin: 0 0 6px; color: #68748b; font-size: 0.82rem; }
+.stat-card strong { display: block; font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: -0.04em; }
+.stat-hint { display: block; margin-top: 5px; color: #929bad; font-size: 0.72rem; }
+
+.progress-panel {
+  padding: 20px 22px; margin-bottom: 16px; background: #fff;
+  border: 1px solid #e4e9f3; border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(35, 51, 90, 0.045);
+}
+.progress-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
+.progress-heading h2 { margin: 0; font-size: 1rem; }
+.progress-heading p { margin: 5px 0 0; color: #7a8498; font-size: 0.83rem; }
+.progress-heading > strong { color: #526de0; font-size: 1.2rem; }
+.progress-track { height: 10px; overflow: hidden; border-radius: 99px; background: #edf0f8; }
+.progress-fill { width: 0%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #526de0, #8b7af0); transition: width 0.25s ease; }
+
+.task-panel {
+  background: #fff; border: 1px solid #e4e9f3; border-radius: 22px;
+  padding: clamp(18px, 4vw, 30px); box-shadow: 0 18px 55px rgba(35, 51, 90, 0.09);
+}
+.task-form { display: flex; gap: 10px; }
+.task-form input {
+  min-width: 0; flex: 1; border: 1px solid #dbe2ef; border-radius: 12px;
+  padding: 14px 15px; outline: none; color: #172033; background: #fbfcff;
+}
+.task-form input:focus { border-color: #526de0; box-shadow: 0 0 0 3px rgba(82, 109, 224, 0.13); }
+.add-button {
+  border: 0; border-radius: 12px; background: #526de0; color: #fff;
+  font-weight: 750; padding: 0 19px; transition: background 0.2s, transform 0.2s;
+}
+.add-button:hover { background: #4058c4; }
+.add-button:active { transform: scale(0.98); }
+
+.toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; margin: 25px 0 18px;
+}
+.filters { display: flex; gap: 5px; padding: 4px; background: #f1f4fa; border-radius: 11px; }
+.filter-button {
+  border: 0; border-radius: 8px; padding: 8px 12px; color: #69758b;
+  background: transparent; font-size: 0.88rem; font-weight: 650;
+}
+.filter-button.active { color: #334cc1; background: #fff; box-shadow: 0 1px 4px rgba(20, 30, 60, 0.1); }
+.task-count, .list-footer { color: #7a8498; font-size: 0.85rem; }
+.task-list { display: grid; gap: 9px; padding: 0; margin: 0; list-style: none; }
+.task-item {
+  display: flex; align-items: center; gap: 12px; min-width: 0; padding: 13px 12px;
+  border: 1px solid #e8ecf4; border-radius: 12px; background: #fff;
+  animation: appear 0.18s ease-out;
+}
+@keyframes appear { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+.task-checkbox { width: 19px; height: 19px; flex: 0 0 auto; accent-color: #526de0; cursor: pointer; }
+.task-text { flex: 1; min-width: 0; overflow-wrap: anywhere; line-height: 1.45; }
+.task-item.completed .task-text { color: #929bad; text-decoration: line-through; }
+.task-actions { display: flex; gap: 5px; }
+.icon-button {
+  display: grid; place-items: center; width: 34px; height: 34px; border: 0;
+  border-radius: 9px; color: #69758b; background: transparent; font-size: 1rem;
+}
+.icon-button:hover { color: #4058c4; background: #f0f3ff; }
+.icon-button.delete:hover { color: #c9354d; background: #fff0f2; }
+.empty-state { color: #8a94a8; text-align: center; padding: 32px 10px; margin: 0; }
+.list-footer {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  border-top: 1px solid #edf0f6; padding-top: 18px; margin-top: 20px;
+}
+.text-button { border: 0; background: transparent; color: #526de0; font-weight: 700; padding: 5px 0; }
+.text-button:hover { color: #334cc1; text-decoration: underline; }
+.text-button:disabled { cursor: not-allowed; text-decoration: none; }
+.privacy-note { text-align: center; color: #8993a6; font-size: 0.82rem; margin-top: 18px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+@media (max-width: 650px) {
+  .dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  body { padding: 28px 12px; }
+  .task-form { flex-direction: column; }
+  .add-button { min-height: 46px; }
+  .toolbar { align-items: flex-start; flex-direction: column; }
+  .filter-button { padding: 8px 10px; }
+  .progress-panel { padding: 18px; }
+}
+
+
+
+/* Due Date and Time Inputs */
+.task-form input[type="date"],
+.task-form input[type="time"] {
+  min-width: 0;
+  width: 100%;
+  padding: 12px 10px;
+  border: 1px solid #dbe2ef;
+  border-radius: 12px;
+  outline: none;
+  color: #172033;
+  background: #fbfcff;
+  font-size: 0.9rem;
+}
+
+/* Focus Effect */
+.task-form input[type="date"]:focus,
+.task-form input[type="time"]:focus {
+  border-color: #526de0;
+  box-shadow: 0 0 0 3px rgba(82, 109, 224, 0.13);
+}
+
+/* Form Layout */
+.task-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.task-form input[type="text"] {
+  flex: 1 1 100%;
+}
+
+.task-form input[type="date"],
+.task-form input[type="time"] {
+  flex: 1 1 130px;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 480px) {
+  .task-form input[type="text"],
+  .task-form input[type="date"],
+  .task-form input[type="time"],
+  .task-form .add-button {
+    width: 100%;
+    flex: 1 1 100%;
+    min-height: 46px;
+  }
+}
+
+
+/* Priority Dropdown */
+.task-form select#task-priority {
+  min-width: 0;
+  flex: 1 1 130px;
+  padding: 12px 10px;
+  border: 1px solid #dbe2ef;
+  border-radius: 12px;
+  outline: none;
+  color: #172033;
+  background: #fbfcff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Focus Effect */
+.task-form select#task-priority:focus {
+  border-color: #526de0;
+  box-shadow: 0 0 0 3px rgba(82, 109, 224, 0.13);
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .task-form select#task-priority {
+    width: 100%;
+    flex: 1 1 100%;
+    min-height: 46px;
+  }
+}
+
+
+/* Priority Badge Styling */
+.priority-badge {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 7px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.priority-high {
+  color: #c9354d;
+  background: #fff0f2;
+}
+
+.priority-medium {
+  color: #a36508;
+  background: #fff4df;
+}
+
+.priority-low {
+  color: #168653;
+  background: #e5f8ee;
+}

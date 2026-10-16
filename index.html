@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A simple to-do list app with task statistics and progress tracking.">
   <title>My To-Do List</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="./js/script.js" defer></script>
+ <link rel="stylesheet" href="./style.css">
+<script src="./script.js" defer></script>
 </head>
 <body>
   <main class="app">
@@ -58,9 +58,9 @@
 
     <section class="task-panel" aria-labelledby="tasks-heading">
       
+
 <form id="task-form" class="task-form">
   <label class="sr-only" for="task-input">Enter a task</label>
-
   <input
     id="task-input"
     type="text"
@@ -82,23 +82,20 @@
     id="task-due-time"
     type="time"
     aria-label="Task due time"
-    
- <label class="sr-only" for="task-priority">
-  Task priority
-</label>
-
-<select id="task-priority" aria-label="Task priority">
-  <option value="low">Low Priority</option>
-  <option value="medium" selected>Medium Priority</option>
-  <option value="high">High Priority</option>
-</select>
-
   >
+
+  <label class="sr-only" for="task-priority">Task priority</label>
+  <select id="task-priority" aria-label="Task priority">
+    <option value="low">Low Priority</option>
+    <option value="medium" selected>Medium Priority</option>
+    <option value="high">High Priority</option>
+  </select>
 
   <button type="submit" class="add-button">
     + Add task
   </button>
 </form>
+
 
 
       <div class="toolbar">

@@ -250,3 +250,53 @@ h1 span { color: #526de0; }
   color: #168653;
   background: #e5f8ee;
 }
+
+
+
+
+/* Deadline information */
+.deadline-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+}
+
+.deadline-date {
+  color: #68748b;
+}
+
+.deadline-badge {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.deadline-upcoming {
+  color: #334cc1;
+  background: #eef1ff;
+}
+
+.deadline-today {
+  color: #a36508;
+  background: #fff4df;
+}
+
+.deadline-overdue {
+  color: #c9354d;
+  background: #fff0f2;
+}
+
+.deadline-completed {
+  color: #168653;
+  background: #e5f8ee;
+}
+
+.task-content {
+  flex: 1;
+  min-width: 0;
+}
